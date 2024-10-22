@@ -6,8 +6,8 @@ import UseState from './components/UseState';
 function App() {
   return (
     <div className="App">
-      {/* <UseState /> */}
-      <ArrayUseState />
+      <UseState />
+      {/* <ArrayUseState /> */}
     </div>
   );
 }

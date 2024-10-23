@@ -2,7 +2,7 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div>
+    <div className='bg-green-200 h-full w-full'>
       register
     </div>
   )

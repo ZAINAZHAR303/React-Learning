@@ -5,6 +5,7 @@ export const fetchProducts = createAsyncThunk(
   async () => {
     const response = await fetch("https://fakestoreapi.com/products");
     const data = await response.json();
+    console.log("data in fetchProducts action", data)
     return data;
   }
 );
@@ -15,19 +16,18 @@ const productSlice = createSlice({
     products: [],
   },
   reducers: {
-    setProducts: (state, action) => {
+setProducts: (state, action) => {
       state.products = action.payload;
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
-        console.log("fetch products in redux")
+        console.log("fetch products in reducer", action.payload)
       state.products = action.payload;
     });
   },
 });
 
 export const { setProducts } = productSlice.actions;
-const productReducer =  productSlice.reducer;
+export default productSlice.reducer;
 
-export default productReducer.reducer

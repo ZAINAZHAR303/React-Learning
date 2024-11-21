@@ -9,6 +9,7 @@ function App() {
   const dispatch = useDispatch();
   console.log("products in comp", products)
 
+
   const onClickGetProducts = ()=>{
     dispatch(fetchProducts())
   }

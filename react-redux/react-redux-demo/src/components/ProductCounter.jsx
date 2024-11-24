@@ -1,52 +1,38 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  increment,
-  decrement,
-  reset,
-  incrementbyAmount,
-} from "../store/slices/counterSlice";
+
 import { fetchProducts } from "../store/slices/productSlice";
-import { useState } from "react";
+import { useEffect } from "react";
+import { deleteProduct, deleteProductAction } from "../store/slices/productSlice";
 
 const ProductCounter = () => {
   const products = useSelector((store) => store.productSlice.products);
-  const counter = useSelector((store) => store.counterSlice.value);
-  
-  const [incrementAmount, setIncrementAmount] = useState(0);
-
-  const setvalue = Number(incrementAmount) || 0;
 
   const dispatch = useDispatch();
   console.log("products in comp", products);
 
-  const onClickGetProducts = () => {
+  useEffect(()=>{
     dispatch(fetchProducts());
-  };
-  const resetAll = () => {
-    console.log("Before reset:",counter);
-    setIncrementAmount(0);
-    dispatch(reset());
-    console.log("After reset:", counter);
-  };
-  console.log("outside function:",counter);
+  },[])
+  const onClickDeleteProduct= (id)=>{
+    console.log("delete product id" , id)
+    dispatch(deleteProductAction(id));
+  }
+
   return (
-    <div className="App">
-      <button onClick={onClickGetProducts}>GEt products</button>
-      <h1>{counter}</h1>
-      <button onClick={() => dispatch(increment())}>increment</button>
-      <button onClick={() => dispatch(decrement())}>decrement</button>
-      <button onClick={() => dispatch(reset())}>reset</button>
-      <div>
-        <input
-          type="text"
-          value={incrementAmount}
-          onChange={(e) => setIncrementAmount(e.target.value)}
-        />
-        <button onClick={() => dispatch(incrementbyAmount(setvalue))}>
-          incrementbyAmount
-        </button>
-        <button onClick={resetAll}>Reset All</button>
-      </div>
+    <div className="grid grid-cols-2 gap-4 ">
+      {/* <button onClick={onClickGetProducts}>GEt products</button> */}
+      {products?.map((item) => (
+        <section key={item.id} className="border-[2px] w-[300px] flex flex-col items-center justify-center ">
+          <img src={item.image} className="h-[200px] w-[200px] border-[2px]" alt="image" />
+          <h2 className="text-[20px] font-bold ">{item.title}</h2>
+          <p>{item.description}</p>
+          <p className="font-bold text-orange-400">$ {item.price}</p>
+          <div className="flex gap-2">
+          <button className="bg-red-400 text-white rounded-md p-2 " onClick={()=>onClickDeleteProduct(item.id)}> Delete</button>
+          <button>Update</button>
+          </div>
+        </section>
+      ))}
     </div>
   );
 };

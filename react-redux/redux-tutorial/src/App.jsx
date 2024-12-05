@@ -2,7 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import Navbar from './components/Navbar'
+import DisplayProducts from './components/DisplayProducts'
 import Create from './components/Create'
 
 function App() {
@@ -10,8 +10,9 @@ function App() {
 
   return (
     <>
-     <Navbar />
+    <h1>hello world</h1>
      <Create />
+     <DisplayProducts />
     </>
   )
 }

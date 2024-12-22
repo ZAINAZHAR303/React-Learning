@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { addDoc, collection,doc, deleteDoc, getDocs, updateDoc } from "firebase/firestore";
 import { db, storage } from "../../../config/firebase";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+// import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 export const getPosts = createAsyncThunk("product/getitems", async () => {
   try {

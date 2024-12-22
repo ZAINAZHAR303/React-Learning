@@ -4,7 +4,7 @@ import {
   increment,
   decrement,
   reset,
-  incrementbyAmount,
+  incrementByAmount,
 } from "../store/slices/counterSlice";
 const Counter = () => {
   const counter = useSelector((store) => store.counterSlice.value);
@@ -31,7 +31,7 @@ const Counter = () => {
           value={incrementAmount}
           onChange={(e) => setIncrementAmount(e.target.value)}
         />
-        <button onClick={() => dispatch(incrementbyAmount(setvalue))}>
+        <button onClick={() => dispatch(incrementByAmount(setvalue))}>
           incrementbyAmount
         </button>
         <button onClick={resetAll}>Reset All</button>

@@ -36,7 +36,7 @@ const Navbar = () => {
               className="flex border-1 rounded-md bg-slate-200 mb-4 justify-between w-[500px] py-2 px-8 ">
               {post.imageURL &&
               (
-                post.fileType === "image/jpeg"?(
+                post.fileType === "image/jpeg" ?(
                   <img src={post.imageURL} alt="Product Image" />
                 ):(
                   <video src={post.imageURL} controls autoPlay loop muted></video>
@@ -44,7 +44,7 @@ const Navbar = () => {
               )
         }
 
-
+          
 
               <h1>{post.name}  - { post?.createdAt?.seconds ? new Date(post?.createdAt?.toDate()).toLocaleDateString() : new Date(post?.createdAt).toLocaleDateString()} - {post.uid}</h1>
               <p>{post.email}</p>

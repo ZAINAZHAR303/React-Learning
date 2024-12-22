@@ -2,14 +2,17 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
+var jwt = require('jsonwebtoken');
+var cors = require('cors');
 const app = express();
+
 const port = 7000;
 
-
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
+const secretKey = "foof9843kfdoi^%&)(#hdjfdfdsf^*09*"
 
 const connectDb = async ()=>{
     try{
@@ -172,7 +175,72 @@ app.post('/auth/signup', async (req, res) => {
     }
 })
 
+app.post('/auth/login', async (req, res) => {
 
+    try{
+        if(!req.body?.email){
+            res.json({
+            data : [],
+            status : "error",
+            error : "email is required"
+            })
+        }
+
+        if(!req.body?.password){
+            res.json({
+                data : [],
+                status : "error",
+                error : "password is required"
+            })
+        }
+
+        const userFound = await User.findOne({ email: req.body.email });
+
+        if(!userFound){
+            res.json({
+                data : [],
+                 status : "error",
+                 error : "User not found"
+            })
+        }
+        console.log("User found", userFound);
+
+        var passwordIsValid = bcrypt.compareSync(
+            req.body.password,
+            userFound.password
+        );
+
+        if(!passwordIsValid){
+            res.json({
+                data : [],
+                status : "error",
+                error : "Invalid password"
+            })
+        }
+
+        var token = jwt.sign({_id: userFound._id, email: userFound.email, name:userFound.name}, secretKey)
+        console.log("token", token)
+
+        res.json({
+            data:{
+                token: token,
+                email: userFound.email,
+                name: userFound.name,
+                address: userFound.address
+
+            },
+            status: "success"
+        })
+
+
+    }catch(error){
+        res.json({
+            data: [],
+            status: "error",
+            error: error
+        })
+    }
+})
 
 app.listen(port, () =>{
     console.log(`Server is running on port ${port}`)

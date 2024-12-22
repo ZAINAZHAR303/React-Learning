@@ -2,17 +2,19 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import DisplayProducts from './components/DisplayProducts'
-import Create from './components/Create'
+// import DisplayProducts from './components/DisplayProducts'
+// import Create from './components/Create'
+import Home from './pages/home/Home'
+import Routing from './routing/Routing'
+import SignUp from './pages/SignUp/SignUp'
 
 function App() {
-  const [count, setCount] = useState(0)
+  // const [loading, setLoading] = useState(false)
 
   return (
     <>
-    <h1>hello world</h1>
-     <Create />
-     <DisplayProducts />
+     <Routing />
+    
     </>
   )
 }

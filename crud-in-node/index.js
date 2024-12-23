@@ -241,7 +241,7 @@ app.post('/auth/login', async (req, res) => {
         })
     }
 })
-
+// create folder structure
 app.listen(port, () =>{
     console.log(`Server is running on port ${port}`)
 })

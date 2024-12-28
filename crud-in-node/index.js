@@ -204,7 +204,7 @@ app.post('/auth/login', async (req, res) => {
             })
         }
         console.log("User found", userFound);
-
+        
         var passwordIsValid = bcrypt.compareSync(
             req.body.password,
             userFound.password

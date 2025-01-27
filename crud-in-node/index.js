@@ -153,6 +153,7 @@ app.post('/auth/signup', async (req, res) => {
                 error: "password is requires"
             })
         }
+        // using bycript to encode password
         var hash = bcrypt.hashSync(req.body.password,8);
         console.log("hash", hash);
         let newUser = new User({

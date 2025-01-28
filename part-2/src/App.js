@@ -10,6 +10,7 @@ import RenderProps from "./components/RenderProps";
 import ComponentC from "./components/ComponentC";
 import { UserProvider } from "./components/UserContext";
 import ComponentF from "./components/ComponentF";
+import Button from "./components/Button";
 function App() {
   return (
     <div className="App">
@@ -18,7 +19,9 @@ function App() {
       </UserProvider> */}
 
         {/* <ComponentC name="vishwas"/> */}
-        <ClickCounter />
+        {/* <ClickCounter /> */}
+
+        <Button />
 
 
 
